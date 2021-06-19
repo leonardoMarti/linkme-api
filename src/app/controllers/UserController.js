@@ -26,6 +26,7 @@ class UserController {
     const schema = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string().email(),
+      avatar_id: Yup.number(),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
@@ -40,7 +41,7 @@ class UserController {
     const isValid = await schema.isValid(req.body);
     if (!isValid) return res.status(400).json({ error: 'Validation fails' });
 
-    const { email, oldPassword } = req.body;
+    const { email, oldPassword, avatar_id } = req.body;
 
     const user = await User.findByPk(req.userId);
 
@@ -62,7 +63,7 @@ class UserController {
 
     const { id, name, type } = await user.update(req.body);
 
-    return res.json({ id, name, email, type });
+    return res.json({ id, name, email, type, avatar_id });
   }
 }
 

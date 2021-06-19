@@ -10,6 +10,7 @@ class User extends Model {
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         type: Sequelize.ENUM('company', 'trainee'),
+        avatar_id: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -23,6 +24,10 @@ class User extends Model {
     });
 
     return this;
+  }
+
+  static associations(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
   }
 
   checkPassword(password) {
