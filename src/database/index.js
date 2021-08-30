@@ -5,8 +5,9 @@ import databaseConfig from '../config/database';
 import User from '../app/models/User';
 import Address from '../app/models/Address';
 import File from '../app/models/File';
+import Candidate from '../app/models/Candidate';
 
-const models = [User, Address, File];
+const models = [User, Address, File, Candidate];
 
 class Database {
   constructor() {
@@ -18,9 +19,9 @@ class Database {
 
     models
       .map((model) => model.init(this.connection))
-      .map(
-        (model) => model.associate && model.associate(this.connection.models)
-      );
+      .map((model) => {
+        model.associate && model.associate(this.connection.models);
+      });
   }
 }
 
