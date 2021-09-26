@@ -6,4 +6,6 @@ export const ROUTES = {
   CANDIDATES: '/candidates',
   JOBS: '/jobs',
   CANDIDATEJOBS: '/candidate-jobs',
+  AVAILABILITIES: '/availabilities',
+  CANDIDATEAVAILABILITIES: '/candidate-availabilities',
 };

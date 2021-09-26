@@ -10,6 +10,8 @@ import FileController from './app/controllers/FileController';
 import CandidateController from './app/controllers/CandidateController';
 import JobController from './app/controllers/JobController';
 import CandidateJobController from './app/controllers/CandidateJobController';
+import AvailabilityController from './app/controllers/AvailabilityController';
+import CandidateAvailabilityController from './app/controllers/CandidateAvailabilityController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -38,5 +40,14 @@ routes.post(ROUTES.JOBS, JobController.store);
 
 routes.get(ROUTES.CANDIDATEJOBS, CandidateJobController.get);
 routes.post(ROUTES.CANDIDATEJOBS, CandidateJobController.store);
+
+routes.get(ROUTES.AVAILABILITIES, AvailabilityController.get);
+routes.post(ROUTES.AVAILABILITIES, AvailabilityController.store);
+
+routes.get(ROUTES.CANDIDATEAVAILABILITIES, CandidateAvailabilityController.get);
+routes.post(
+  ROUTES.CANDIDATEAVAILABILITIES,
+  CandidateAvailabilityController.store
+);
 
 export default routes;

@@ -1,10 +1,12 @@
 import * as Yup from 'yup';
 
 import User from '../models/User';
+import File from '../models/File';
 import Candidate from '../models/Candidate';
 import CandidateJob from '../models/CandidateJob';
 import Job from '../models/Job';
-import File from '../models/File';
+import Availability from '../models/Availability';
+import CandidateAvailability from '../models/CandidateAvailability';
 
 class CandidateController {
   async get(req, res) {
@@ -27,6 +29,14 @@ class CandidateController {
           as: 'candidateJob',
           attributes: ['level'],
           include: [{ model: Job, as: 'job', attributes: ['name'] }],
+        },
+        {
+          model: CandidateAvailability,
+          as: 'candidateAvailability',
+          attributes: ['id'],
+          include: [
+            { model: Availability, as: 'availability', attributes: ['name'] },
+          ],
         },
       ],
     });

@@ -8,8 +8,19 @@ import File from '../app/models/File';
 import Candidate from '../app/models/Candidate';
 import Job from '../app/models/Job';
 import CandidateJob from '../app/models/CandidateJob';
+import Availability from '../app/models/Availability';
+import CandidateAvailability from '../app/models/CandidateAvailability';
 
-const models = [User, Address, File, Candidate, Job, CandidateJob];
+const models = [
+  User,
+  Address,
+  File,
+  Candidate,
+  Job,
+  CandidateJob,
+  Availability,
+  CandidateAvailability,
+];
 
 class Database {
   constructor() {
