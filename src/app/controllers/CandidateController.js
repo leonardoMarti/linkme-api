@@ -4,6 +4,7 @@ import User from '../models/User';
 import Candidate from '../models/Candidate';
 import CandidateJob from '../models/CandidateJob';
 import Job from '../models/Job';
+import File from '../models/File';
 
 class CandidateController {
   async get(req, res) {
@@ -11,12 +12,21 @@ class CandidateController {
 
     const candidate = await Candidate.findOne({
       where: { user_id: userId },
+      attributes: ['id'],
       include: [
-        { model: User, as: 'user' },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name', 'email', 'type'],
+          include: [
+            { model: File, as: 'avatar', attributes: ['name', 'path'] },
+          ],
+        },
         {
           model: CandidateJob,
           as: 'candidateJob',
-          include: [{ model: Job, as: 'job' }],
+          attributes: ['level'],
+          include: [{ model: Job, as: 'job', attributes: ['name'] }],
         },
       ],
     });

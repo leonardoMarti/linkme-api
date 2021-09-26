@@ -37,6 +37,6 @@ routes.get(ROUTES.JOBS, JobController.get);
 routes.post(ROUTES.JOBS, JobController.store);
 
 routes.get(ROUTES.CANDIDATEJOBS, CandidateJobController.get);
-routes.post(ROUTES.CANDIDATEJOBS, CandidateJobController.get);
+routes.post(ROUTES.CANDIDATEJOBS, CandidateJobController.store);
 
 export default routes;
