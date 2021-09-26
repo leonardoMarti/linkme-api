@@ -20,6 +20,11 @@ class Candidate extends Model {
       sourceKey: 'user_id',
       as: 'user',
     });
+    this.hasMany(models.CandidateJob, {
+      foreignKey: 'candidate_id',
+      sourceKey: 'id',
+      as: 'candidateJob',
+    });
   }
 }
 

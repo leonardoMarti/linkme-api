@@ -2,6 +2,8 @@ import * as Yup from 'yup';
 
 import User from '../models/User';
 import Candidate from '../models/Candidate';
+import CandidateJob from '../models/CandidateJob';
+import Job from '../models/Job';
 
 class CandidateController {
   async get(req, res) {
@@ -9,7 +11,14 @@ class CandidateController {
 
     const candidate = await Candidate.findOne({
       where: { user_id: userId },
-      include: [{ model: User, as: 'user' }],
+      include: [
+        { model: User, as: 'user' },
+        {
+          model: CandidateJob,
+          as: 'candidateJob',
+          include: [{ model: Job, as: 'job' }],
+        },
+      ],
     });
 
     return res.json({ candidate });
@@ -24,7 +33,6 @@ class CandidateController {
     if (!isValid) return res.status(400).json({ error: 'Validation fails' });
 
     const { userId } = req.body;
-    console.log('userId', userId);
 
     const candidateExist = await Candidate.findOne({
       where: { user_id: userId },

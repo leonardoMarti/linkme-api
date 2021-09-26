@@ -3,5 +3,7 @@ export const ROUTES = {
   SESSIONS: '/sessions',
   ADDRESS: '/address',
   FILES: '/files',
-  CANDADIDATES: '/candidates',
+  CANDIDATES: '/candidates',
+  JOBS: '/jobs',
+  CANDIDATEJOBS: '/candidate-jobs',
 };
