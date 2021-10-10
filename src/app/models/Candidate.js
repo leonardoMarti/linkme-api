@@ -8,6 +8,7 @@ class Candidate extends Model {
       },
       {
         sequelize,
+        tableName: 'candidates',
       }
     );
 
@@ -29,6 +30,11 @@ class Candidate extends Model {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
       as: 'candidateAvailability',
+    });
+    this.hasMany(models.CandidateCourseTime, {
+      foreignKey: 'candidate_id',
+      sourceKey: 'id',
+      as: 'candidateCourseTime',
     });
   }
 }

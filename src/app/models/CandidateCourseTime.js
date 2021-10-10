@@ -1,15 +1,15 @@
 import Sequelize, { Model } from 'sequelize';
 
-class CandidateAvailability extends Model {
+class CandidateCourseTime extends Model {
   static init(sequelize) {
     super.init(
       {
         candidate_id: Sequelize.INTEGER,
-        availability_id: Sequelize.INTEGER,
+        course_time_id: Sequelize.INTEGER,
       },
       {
         sequelize,
-        tableName: 'candidate_availabilities',
+        tableName: 'candidate_course_time',
       }
     );
 
@@ -17,12 +17,12 @@ class CandidateAvailability extends Model {
   }
 
   static associate(models) {
-    this.hasOne(models.Availability, {
+    this.hasOne(models.CourseTime, {
       foreignKey: 'id',
-      sourceKey: 'availability_id',
-      as: 'availability',
+      sourceKey: 'course_time_id',
+      as: 'courseTime',
     });
   }
 }
 
-export default CandidateAvailability;
+export default CandidateCourseTime;

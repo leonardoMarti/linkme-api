@@ -7,6 +7,8 @@ import CandidateJob from '../models/CandidateJob';
 import Job from '../models/Job';
 import Availability from '../models/Availability';
 import CandidateAvailability from '../models/CandidateAvailability';
+import CourseTime from '../models/CourseTime';
+import CandidateCourseTime from '../models/CandidateCourseTime';
 
 class CandidateController {
   async get(req, res) {
@@ -36,6 +38,14 @@ class CandidateController {
           attributes: ['id'],
           include: [
             { model: Availability, as: 'availability', attributes: ['name'] },
+          ],
+        },
+        {
+          model: CandidateCourseTime,
+          as: 'candidateCourseTime',
+          attributes: ['id'],
+          include: [
+            { model: CourseTime, as: 'courseTime', attributes: ['name'] },
           ],
         },
       ],

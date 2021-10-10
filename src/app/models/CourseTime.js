@@ -1,15 +1,14 @@
 import Sequelize, { Model } from 'sequelize';
 
-class File extends Model {
+class CourseTime extends Model {
   static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
-        path: Sequelize.STRING,
       },
       {
         sequelize,
-        tableName: 'files',
+        tableName: 'course_time',
       }
     );
 
@@ -17,4 +16,4 @@ class File extends Model {
   }
 }
 
-export default File;
+export default CourseTime;

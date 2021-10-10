@@ -8,6 +8,7 @@ class Job extends Model {
       },
       {
         sequelize,
+        tableName: 'jobs',
       }
     );
 

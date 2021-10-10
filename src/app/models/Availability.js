@@ -8,6 +8,7 @@ class Availability extends Model {
       },
       {
         sequelize,
+        tableName: 'availabilities',
       }
     );
 

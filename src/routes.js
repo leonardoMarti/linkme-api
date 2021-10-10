@@ -12,6 +12,8 @@ import JobController from './app/controllers/JobController';
 import CandidateJobController from './app/controllers/CandidateJobController';
 import AvailabilityController from './app/controllers/AvailabilityController';
 import CandidateAvailabilityController from './app/controllers/CandidateAvailabilityController';
+import CourseTimeController from './app/controllers/CourseTimeController';
+import CandidateCourseTimeController from './app/controllers/CandidateCourseTimeController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -49,5 +51,11 @@ routes.post(
   ROUTES.CANDIDATEAVAILABILITIES,
   CandidateAvailabilityController.store
 );
+
+routes.get(ROUTES.COURSETIME, CourseTimeController.get);
+routes.post(ROUTES.COURSETIME, CourseTimeController.store);
+
+routes.get(ROUTES.CANDIDATECOURSETIME, CandidateCourseTimeController.get);
+routes.post(ROUTES.CANDIDATECOURSETIME, CandidateCourseTimeController.store);
 
 export default routes;

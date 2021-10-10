@@ -10,6 +10,7 @@ class CandidateJob extends Model {
       },
       {
         sequelize,
+        tableName: 'candidate_jobs',
       }
     );
 

@@ -11,6 +11,7 @@ class Address extends Model {
       },
       {
         sequelize,
+        tableName: 'addresses',
       }
     );
 

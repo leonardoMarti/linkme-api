@@ -8,4 +8,6 @@ export const ROUTES = {
   CANDIDATEJOBS: '/candidate-jobs',
   AVAILABILITIES: '/availabilities',
   CANDIDATEAVAILABILITIES: '/candidate-availabilities',
+  COURSETIME: '/course-time',
+  CANDIDATECOURSETIME: '/candidate-course-time',
 };

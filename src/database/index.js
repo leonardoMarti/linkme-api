@@ -10,6 +10,8 @@ import Job from '../app/models/Job';
 import CandidateJob from '../app/models/CandidateJob';
 import Availability from '../app/models/Availability';
 import CandidateAvailability from '../app/models/CandidateAvailability';
+import CourseTime from '../app/models/CourseTime';
+import CandidateCourseTime from '../app/models/CandidateCourseTime';
 
 const models = [
   User,
@@ -20,6 +22,8 @@ const models = [
   CandidateJob,
   Availability,
   CandidateAvailability,
+  CourseTime,
+  CandidateCourseTime,
 ];
 
 class Database {
