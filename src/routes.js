@@ -14,6 +14,7 @@ import AvailabilityController from './app/controllers/AvailabilityController';
 import CandidateAvailabilityController from './app/controllers/CandidateAvailabilityController';
 import CourseTimeController from './app/controllers/CourseTimeController';
 import CandidateCourseTimeController from './app/controllers/CandidateCourseTimeController';
+import PersonalityController from './app/controllers/PersonalityController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -57,5 +58,8 @@ routes.post(ROUTES.COURSETIME, CourseTimeController.store);
 
 routes.get(ROUTES.CANDIDATECOURSETIME, CandidateCourseTimeController.get);
 routes.post(ROUTES.CANDIDATECOURSETIME, CandidateCourseTimeController.store);
+
+routes.get(ROUTES.PERSONALITIES, PersonalityController.get);
+routes.post(ROUTES.PERSONALITIES, PersonalityController.store);
 
 export default routes;
