@@ -15,6 +15,7 @@ import CandidateCourseTime from '../app/models/CandidateCourseTime';
 import Personality from '../app/models/Personality';
 import CandidatePersonality from '../app/models/CandidatePersonality';
 import Skill from '../app/models/Skill';
+import CandidateSkill from '../app/models/CandidateSkill';
 
 const models = [
   User,
@@ -30,6 +31,7 @@ const models = [
   Personality,
   CandidatePersonality,
   Skill,
+  CandidateSkill,
 ];
 
 class Database {
