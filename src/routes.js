@@ -19,6 +19,7 @@ import CandidatePersonalityController from './app/controllers/CandidatePersonali
 import SkillController from './app/controllers/SkillController';
 import CandidateSkillController from './app/controllers/CandidateSkillController';
 import IdiomController from './app/controllers/IdiomController';
+import CandidateIdiomController from './app/controllers/CandidateIdiomController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -80,5 +81,8 @@ routes.post(ROUTES.CANDIDATESKILLS, CandidateSkillController.store);
 
 routes.get(ROUTES.IDIOMS, IdiomController.get);
 routes.post(ROUTES.IDIOMS, IdiomController.store);
+
+routes.get(ROUTES.CANDIDATEIDIOMS, CandidateIdiomController.get);
+routes.post(ROUTES.CANDIDATEIDIOMS, CandidateIdiomController.store);
 
 export default routes;

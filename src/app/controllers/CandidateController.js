@@ -11,6 +11,10 @@ import CourseTime from '../models/CourseTime';
 import CandidateCourseTime from '../models/CandidateCourseTime';
 import Personality from '../models/Personality';
 import CandidatePersonality from '../models/CandidatePersonality';
+import Skill from '../models/Skill';
+import CandidateSkill from '../models/CandidateSkill';
+import Idiom from '../models/Idiom';
+import CandidateIdiom from '../models/CandidateIdiom';
 
 class CandidateController {
   async get(req, res) {
@@ -57,6 +61,18 @@ class CandidateController {
           include: [
             { model: Personality, as: 'personality', attributes: ['name'] },
           ],
+        },
+        {
+          model: CandidateSkill,
+          as: 'candidateSkill',
+          attributes: ['id'],
+          include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
+        },
+        {
+          model: CandidateIdiom,
+          as: 'candidateIdiom',
+          attributes: ['id'],
+          include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
         },
       ],
     });

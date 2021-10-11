@@ -15,4 +15,5 @@ export const ROUTES = {
   SKILLS: '/skills',
   CANDIDATESKILLS: '/candidate-skills',
   IDIOMS: '/idioms',
+  CANDIDATEIDIOMS: '/candidate-idioms',
 };

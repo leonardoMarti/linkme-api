@@ -1,16 +1,16 @@
 import Sequelize, { Model } from 'sequelize';
 
-class CandidateSkill extends Model {
+class CandidateIdiom extends Model {
   static init(sequelize) {
     super.init(
       {
         candidate_id: Sequelize.INTEGER,
-        skill_id: Sequelize.INTEGER,
+        idiom_id: Sequelize.INTEGER,
         level: Sequelize.INTEGER,
       },
       {
         sequelize,
-        tableName: 'candidate_skills',
+        tableName: 'candidate_idioms',
       }
     );
 
@@ -18,12 +18,12 @@ class CandidateSkill extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Skill, {
+    this.hasMany(models.Idiom, {
       foreignKey: 'id',
-      sourceKey: 'skill_id',
-      as: 'skill',
+      sourceKey: 'idiom_id',
+      as: 'idiom',
     });
   }
 }
 
-export default CandidateSkill;
+export default CandidateIdiom;
