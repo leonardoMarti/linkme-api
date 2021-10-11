@@ -14,6 +14,13 @@ class Personality extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.CandidatePersonality, {
+      foreignKey: 'id',
+      as: 'personality',
+    });
+  }
 }
 
 export default Personality;
