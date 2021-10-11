@@ -16,6 +16,7 @@ import CourseTimeController from './app/controllers/CourseTimeController';
 import CandidateCourseTimeController from './app/controllers/CandidateCourseTimeController';
 import PersonalityController from './app/controllers/PersonalityController';
 import CandidatePersonalityController from './app/controllers/CandidatePersonalityController';
+import SkillController from './app/controllers/SkillController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -68,5 +69,8 @@ routes.post(
   ROUTES.CANDIDATEPERSONALITIES,
   CandidatePersonalityController.store
 );
+
+routes.get(ROUTES.SKILLS, SkillController.get);
+routes.post(ROUTES.SKILLS, SkillController.store);
 
 export default routes;
