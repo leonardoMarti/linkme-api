@@ -18,6 +18,7 @@ import Skill from '../app/models/Skill';
 import CandidateSkill from '../app/models/CandidateSkill';
 import Idiom from '../app/models/Idiom';
 import CandidateIdiom from '../app/models/CandidateIdiom';
+import Vancacy from '../app/models/Vacancy';
 
 const models = [
   User,
@@ -36,6 +37,7 @@ const models = [
   CandidateSkill,
   Idiom,
   CandidateIdiom,
+  Vancacy,
 ];
 
 class Database {
