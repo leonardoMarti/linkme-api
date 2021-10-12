@@ -17,4 +17,5 @@ export const ROUTES = {
   IDIOMS: '/idioms',
   CANDIDATEIDIOMS: '/candidate-idioms',
   VACANCIES: '/vacancies',
+  VACANCYPERSONALITIES: '/vacancy-personalities',
 };

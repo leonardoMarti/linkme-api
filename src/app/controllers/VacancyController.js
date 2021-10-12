@@ -3,6 +3,8 @@ import * as Yup from 'yup';
 import Vacancy from '../models/Vacancy';
 import User from '../models/User';
 import File from '../models/File';
+import VacancyPersonality from '../models/VacancyPersonality';
+import Personality from '../models/Personality';
 
 class VacancyController {
   async get(req, res) {
@@ -15,6 +17,14 @@ class VacancyController {
           attributes: ['name', 'email', 'type'],
           include: [
             { model: File, as: 'avatar', attributes: ['name', 'path'] },
+          ],
+        },
+        {
+          model: VacancyPersonality,
+          as: 'vacancyPersonality',
+          attributes: ['id'],
+          include: [
+            { model: Personality, as: 'personality', attributes: ['name'] },
           ],
         },
       ],

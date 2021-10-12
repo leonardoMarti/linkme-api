@@ -8,8 +8,6 @@ class CandidatePersonalityController {
   async get(req, res) {
     const { candidateId } = req.query;
 
-    console.log('candidateId', candidateId);
-
     const candidatePersonality = await CandidatePersonality.findOne({
       where: { candidate_id: candidateId },
       include: [{ model: Personality, as: 'personality' }],
