@@ -5,6 +5,8 @@ import User from '../models/User';
 import File from '../models/File';
 import VacancyPersonality from '../models/VacancyPersonality';
 import Personality from '../models/Personality';
+import VacancySkill from '../models/VacancySkill';
+import Skill from '../models/Skill';
 
 class VacancyController {
   async get(req, res) {
@@ -26,6 +28,12 @@ class VacancyController {
           include: [
             { model: Personality, as: 'personality', attributes: ['name'] },
           ],
+        },
+        {
+          model: VacancySkill,
+          as: 'vacancySkill',
+          attributes: ['id'],
+          include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
         },
       ],
     });
