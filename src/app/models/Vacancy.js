@@ -34,6 +34,11 @@ class Vacancy extends Model {
       sourceKey: 'id',
       as: 'vacancySkill',
     });
+    this.hasMany(models.VacancyIdiom, {
+      foreignKey: 'vacancy_id',
+      sourceKey: 'id',
+      as: 'vacancyIdiom',
+    });
   }
 }
 

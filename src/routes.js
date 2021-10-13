@@ -23,6 +23,7 @@ import CandidateIdiomController from './app/controllers/CandidateIdiomController
 import VacancyController from './app/controllers/VacancyController';
 import VacancyPersonalityController from './app/controllers/VacancyPersonalityController';
 import VacancySkillController from './app/controllers/VacancySkillController';
+import VacancyIdiomController from './app/controllers/VacancyIdiomController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -96,5 +97,8 @@ routes.post(ROUTES.VACANCYPERSONALITIES, VacancyPersonalityController.store);
 
 routes.get(ROUTES.VACANCYSKILLS, VacancySkillController.get);
 routes.post(ROUTES.VACANCYSKILLS, VacancySkillController.store);
+
+routes.get(ROUTES.VACANCYIDIOMS, VacancyIdiomController.get);
+routes.post(ROUTES.VACANCYIDIOMS, VacancyIdiomController.store);
 
 export default routes;

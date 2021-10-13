@@ -7,6 +7,8 @@ import VacancyPersonality from '../models/VacancyPersonality';
 import Personality from '../models/Personality';
 import VacancySkill from '../models/VacancySkill';
 import Skill from '../models/Skill';
+import VacancyIdiom from '../models/VacancyIdiom';
+import Idiom from '../models/Idiom';
 
 class VacancyController {
   async get(req, res) {
@@ -32,8 +34,14 @@ class VacancyController {
         {
           model: VacancySkill,
           as: 'vacancySkill',
-          attributes: ['id'],
+          attributes: ['id', 'level'],
           include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
+        },
+        {
+          model: VacancyIdiom,
+          as: 'vacancyIdiom',
+          attributes: ['id', 'level'],
+          include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
         },
       ],
     });

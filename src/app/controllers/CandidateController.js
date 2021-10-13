@@ -65,13 +65,13 @@ class CandidateController {
         {
           model: CandidateSkill,
           as: 'candidateSkill',
-          attributes: ['id'],
+          attributes: ['id', 'level'],
           include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
         },
         {
           model: CandidateIdiom,
           as: 'candidateIdiom',
-          attributes: ['id'],
+          attributes: ['id', 'level'],
           include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
         },
       ],
