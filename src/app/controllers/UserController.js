@@ -24,6 +24,7 @@ class UserController {
       name: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().required().min(6),
+      type: Yup.string().required(),
     });
 
     const isValid = await schema.isValid(req.body);

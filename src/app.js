@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes';
+import cors from 'cors';
 
 import './database';
 
@@ -16,6 +17,8 @@ class App {
   }
 
   routes() {
+    this.server.use(cors());
+    this.server.options('*', cors());
     this.server.use(routes);
   }
 }
