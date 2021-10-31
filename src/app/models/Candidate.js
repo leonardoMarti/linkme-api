@@ -24,32 +24,32 @@ class Candidate extends Model {
     this.hasMany(models.CandidateJob, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidateJob',
+      as: 'job',
     });
     this.hasMany(models.CandidateAvailability, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidateAvailability',
+      as: 'availability',
     });
     this.hasMany(models.CandidateCourseTime, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidateCourseTime',
+      as: 'courseTime',
     });
     this.hasMany(models.CandidatePersonality, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidatePersonality',
+      as: 'personality',
     });
     this.hasMany(models.CandidateSkill, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidateSkill',
+      as: 'skill',
     });
     this.hasMany(models.CandidateIdiom, {
       foreignKey: 'candidate_id',
       sourceKey: 'id',
-      as: 'candidateIdiom',
+      as: 'idiom',
     });
   }
 }

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { promisify } from 'util';
 import * as Yup from 'yup';
 
 import authConfig from '../../config/auth';
@@ -6,6 +7,16 @@ import User from '../models/User';
 import File from '../models/File';
 
 class SessionController {
+  async get(req, res) {
+    const { token } = req.query;
+    try {
+      await promisify(jwt.verify)(token, authConfig.secret);
+      return res.json(true);
+    } catch (error) {
+      return res.json(false);
+    }
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),

@@ -20,7 +20,7 @@ class UserController {
       ],
     });
 
-    return res.json({ user });
+    return res.json(user);
   }
 
   async store(req, res) {

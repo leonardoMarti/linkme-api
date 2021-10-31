@@ -20,8 +20,12 @@ class CandidateController {
   async get(req, res) {
     const { userId } = req.query;
 
-    const candidate = await Candidate.findOne({
-      where: { user_id: userId },
+    let queryObj;
+
+    if (userId) queryObj = { where: { user_id: userId } };
+
+    const candidate = await Candidate.findAll({
+      ...queryObj,
       attributes: ['id'],
       include: [
         {
@@ -34,13 +38,13 @@ class CandidateController {
         },
         {
           model: CandidateJob,
-          as: 'candidateJob',
+          as: 'job',
           attributes: ['level'],
           include: [{ model: Job, as: 'job', attributes: ['name'] }],
         },
         {
           model: CandidateAvailability,
-          as: 'candidateAvailability',
+          as: 'availability',
           attributes: ['id'],
           include: [
             { model: Availability, as: 'availability', attributes: ['name'] },
@@ -48,7 +52,7 @@ class CandidateController {
         },
         {
           model: CandidateCourseTime,
-          as: 'candidateCourseTime',
+          as: 'courseTime',
           attributes: ['id'],
           include: [
             { model: CourseTime, as: 'courseTime', attributes: ['name'] },
@@ -56,7 +60,7 @@ class CandidateController {
         },
         {
           model: CandidatePersonality,
-          as: 'candidatePersonality',
+          as: 'personality',
           attributes: ['id'],
           include: [
             { model: Personality, as: 'personality', attributes: ['name'] },
@@ -64,13 +68,13 @@ class CandidateController {
         },
         {
           model: CandidateSkill,
-          as: 'candidateSkill',
+          as: 'skill',
           attributes: ['id', 'level'],
           include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
         },
         {
           model: CandidateIdiom,
-          as: 'candidateIdiom',
+          as: 'idiom',
           attributes: ['id', 'level'],
           include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
         },
