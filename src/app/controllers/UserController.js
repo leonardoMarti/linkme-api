@@ -4,6 +4,7 @@ import { TRANSLATE_USER } from '../../constants/translate';
 
 import User from '../models/User';
 import File from '../models/File';
+import Address from '../models/Address';
 
 class UserController {
   async get(req, res) {
@@ -16,6 +17,11 @@ class UserController {
           model: File,
           as: 'avatar',
           attributes: ['id', 'name', 'path'],
+        },
+        {
+          model: Address,
+          as: 'address',
+          attributes: ['city', 'state', 'neighborhood'],
         },
       ],
     });

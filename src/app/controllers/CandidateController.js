@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 import User from '../models/User';
 import File from '../models/File';
+import Address from '../models/Address';
 import Candidate from '../models/Candidate';
 import CandidateJob from '../models/CandidateJob';
 import Job from '../models/Job';
@@ -18,7 +19,7 @@ import CandidateIdiom from '../models/CandidateIdiom';
 
 class CandidateController {
   async get(req, res) {
-    const { userId } = req.query;
+    const { userId, limit, offset } = req.query;
 
     let queryObj;
 
@@ -34,6 +35,11 @@ class CandidateController {
           attributes: ['name', 'email', 'type'],
           include: [
             { model: File, as: 'avatar', attributes: ['name', 'path'] },
+            {
+              model: Address,
+              as: 'address',
+              attributes: ['city', 'state', 'neighborhood'],
+            },
           ],
         },
         {
@@ -46,8 +52,13 @@ class CandidateController {
           model: CandidateAvailability,
           as: 'availability',
           attributes: ['id'],
+          order: [['id', 'ASC']],
           include: [
-            { model: Availability, as: 'availability', attributes: ['name'] },
+            {
+              model: Availability,
+              as: 'availability',
+              attributes: ['id', 'name'],
+            },
           ],
         },
         {
@@ -79,9 +90,15 @@ class CandidateController {
           include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
         },
       ],
+      order: [
+        [{ model: User, as: 'user' }, 'name', 'ASC'],
+        [{ model: CandidateAvailability, as: 'availability' }, 'id', 'ASC'],
+      ],
+      limit,
+      offset,
     });
 
-    return res.json({ candidate });
+    return res.json(candidate);
   }
 
   async store(req, res) {
