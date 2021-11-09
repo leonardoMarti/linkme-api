@@ -5,7 +5,7 @@ import Job from '../models/Job';
 class JobController {
   async get(req, res) {
     const jobs = await Job.findAll();
-    return res.json({ jobs });
+    return res.json(jobs);
   }
 
   async store(req, res) {

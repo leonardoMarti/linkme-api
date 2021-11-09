@@ -5,7 +5,7 @@ import Skill from '../models/Skill';
 class SkillController {
   async get(req, res) {
     const skills = await Skill.findAll({ attributes: ['id', 'name'] });
-    return res.json({ skills });
+    return res.json(skills);
   }
 
   async store(req, res) {

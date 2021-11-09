@@ -5,7 +5,7 @@ import Idiom from '../models/Idiom';
 class IdiomController {
   async get(req, res) {
     const idioms = await Idiom.findAll({ attributes: ['id', 'name'] });
-    return res.json({ idioms });
+    return res.json(idioms);
   }
 
   async store(req, res) {

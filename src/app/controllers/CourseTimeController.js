@@ -5,7 +5,7 @@ import CourseTime from '../models/CourseTime';
 class CourseTimeController {
   async get(req, res) {
     const courseTime = await CourseTime.findAll({ attributes: ['id', 'name'] });
-    return res.json({ courseTime });
+    return res.json(courseTime);
   }
 
   async store(req, res) {

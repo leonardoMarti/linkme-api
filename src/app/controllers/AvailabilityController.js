@@ -7,7 +7,7 @@ class AvailabilityController {
     const availabilities = await Availability.findAll({
       attributes: ['id', 'name'],
     });
-    return res.json({ availabilities });
+    return res.json(availabilities);
   }
 
   async store(req, res) {

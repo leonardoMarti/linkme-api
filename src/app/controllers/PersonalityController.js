@@ -7,7 +7,7 @@ class PersonalityController {
     const personalities = await Personality.findAll({
       attributes: ['id', 'name'],
     });
-    return res.json({ personalities });
+    return res.json(personalities);
   }
 
   async store(req, res) {
