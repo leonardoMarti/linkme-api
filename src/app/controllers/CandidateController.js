@@ -46,7 +46,7 @@ class CandidateController {
           model: CandidateJob,
           as: 'job',
           attributes: ['level'],
-          include: [{ model: Job, as: 'job', attributes: ['name'] }],
+          include: [{ model: Job, as: 'job', attributes: ['id', 'name'] }],
         },
         {
           model: CandidateAvailability,
@@ -66,7 +66,7 @@ class CandidateController {
           as: 'courseTime',
           attributes: ['id'],
           include: [
-            { model: CourseTime, as: 'courseTime', attributes: ['name'] },
+            { model: CourseTime, as: 'courseTime', attributes: ['id', 'name'] },
           ],
         },
         {
@@ -74,20 +74,24 @@ class CandidateController {
           as: 'personality',
           attributes: ['id'],
           include: [
-            { model: Personality, as: 'personality', attributes: ['name'] },
+            {
+              model: Personality,
+              as: 'personality',
+              attributes: ['id', 'name'],
+            },
           ],
         },
         {
           model: CandidateSkill,
           as: 'skill',
           attributes: ['id', 'level'],
-          include: [{ model: Skill, as: 'skill', attributes: ['name'] }],
+          include: [{ model: Skill, as: 'skill', attributes: ['id', 'name'] }],
         },
         {
           model: CandidateIdiom,
           as: 'idiom',
           attributes: ['id', 'level'],
-          include: [{ model: Idiom, as: 'idiom', attributes: ['name'] }],
+          include: [{ model: Idiom, as: 'idiom', attributes: ['id', 'name'] }],
         },
       ],
       order: [

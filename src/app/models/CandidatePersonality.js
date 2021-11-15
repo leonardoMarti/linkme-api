@@ -17,7 +17,7 @@ class CandidatePersonality extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Personality, {
+    this.hasOne(models.Personality, {
       foreignKey: 'id',
       sourceKey: 'personality_id',
       as: 'personality',
