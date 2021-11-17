@@ -18,7 +18,7 @@ class VacancySkill extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Skill, {
+    this.hasOne(models.Skill, {
       foreignKey: 'id',
       sourceKey: 'skill_id',
       as: 'skill',

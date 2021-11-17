@@ -18,7 +18,7 @@ class VacancyIdiom extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Idiom, {
+    this.hasOne(models.Idiom, {
       foreignKey: 'id',
       sourceKey: 'idiom_id',
       as: 'idiom',
