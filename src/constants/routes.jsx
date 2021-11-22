@@ -20,4 +20,6 @@ export const ROUTES = {
   VACANCYPERSONALITIES: '/vacancy-personalities',
   VACANCYSKILLS: '/vacancy-skills',
   VACANCYIDIOMS: '/vacancy-idioms',
+  SOLICITATIONS: '/solicitations',
+  NOTIFICATIONS: '/notifications',
 };

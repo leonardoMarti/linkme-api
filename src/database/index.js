@@ -22,6 +22,8 @@ import Vacancy from '../app/models/Vacancy';
 import VacancyPersonality from '../app/models/VacancyPersonality';
 import VacancySkill from '../app/models/VacancySkill';
 import VacancyIdiom from '../app/models/VacancyIdiom';
+import Solicitation from '../app/models/Solicitation';
+import Notification from '../app/models/Notification';
 
 const models = [
   User,
@@ -44,6 +46,8 @@ const models = [
   VacancyPersonality,
   VacancySkill,
   VacancyIdiom,
+  Solicitation,
+  Notification,
 ];
 
 class Database {

@@ -33,6 +33,16 @@ class User extends Model {
       foreignKey: 'id_user',
       as: 'address',
     });
+    this.hasOne(models.Candidate, {
+      sourceKey: 'id',
+      foreignKey: 'user_id',
+      as: 'candidate',
+    });
+    this.hasOne(models.Vacancy, {
+      sourceKey: 'id',
+      foreignKey: 'user_id',
+      as: 'vacancy',
+    });
   }
 
   checkPassword(password) {

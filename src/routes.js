@@ -24,6 +24,8 @@ import VacancyController from './app/controllers/VacancyController';
 import VacancyPersonalityController from './app/controllers/VacancyPersonalityController';
 import VacancySkillController from './app/controllers/VacancySkillController';
 import VacancyIdiomController from './app/controllers/VacancyIdiomController';
+import SolicitationController from './app/controllers/SolicitationController';
+import NotificationController from './app/controllers/NotificationController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -101,5 +103,13 @@ routes.post(ROUTES.VACANCYSKILLS, VacancySkillController.store);
 
 routes.get(ROUTES.VACANCYIDIOMS, VacancyIdiomController.get);
 routes.post(ROUTES.VACANCYIDIOMS, VacancyIdiomController.store);
+
+routes.get(ROUTES.SOLICITATIONS, SolicitationController.get);
+routes.post(ROUTES.SOLICITATIONS, SolicitationController.store);
+routes.put(ROUTES.SOLICITATIONS, SolicitationController.update);
+
+routes.get(ROUTES.NOTIFICATIONS, NotificationController.get);
+routes.post(ROUTES.NOTIFICATIONS, NotificationController.store);
+routes.put(ROUTES.NOTIFICATIONS, NotificationController.update);
 
 export default routes;
