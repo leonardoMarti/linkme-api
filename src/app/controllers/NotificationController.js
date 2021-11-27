@@ -50,7 +50,7 @@ class NotificationController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      notificationId: Yup.number().required(),
+      id: Yup.number().required(),
       notify: Yup.bool().required(),
     });
 
@@ -60,9 +60,9 @@ class NotificationController {
         .status(400)
         .json({ error: TRANSLATE_NOTIFICATION.validateFail });
 
-    const { notificationId, notify } = req.body;
+    const { id, notify } = req.body;
 
-    const notification = await Notification.findByPk(notificationId);
+    const notification = await Notification.findByPk(id);
 
     if (!notification)
       return res.status(400).json({ error: TRANSLATE_NOTIFICATION.dontHave });
@@ -70,7 +70,7 @@ class NotificationController {
     const response = await notification.update(
       { notify },
       {
-        where: { notification_id: notificationId },
+        where: { notification_id: id },
       }
     );
 

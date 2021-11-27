@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import { TRANSLATE_SOLICITATION } from '../../constants/translate';
+import { SOLICITATION_STATUS } from '../../constants/enumerate';
 
 import Solicitation from '../models/Solicitation';
 import Notification from '../models/Notification';
@@ -17,7 +18,7 @@ class SolicitationController {
         {
           model: Notification,
           as: 'notification',
-          attributes: ['notify'],
+          attributes: ['id', 'notify'],
         },
         {
           model: User,
@@ -88,8 +89,7 @@ class SolicitationController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      userId: Yup.number().required(),
-      vacancyId: Yup.number().required(),
+      id: Yup.number().required(),
       status: Yup.string().required(),
     });
 
@@ -99,19 +99,23 @@ class SolicitationController {
         .status(400)
         .json({ error: TRANSLATE_SOLICITATION.validateFail });
 
-    const { userId, vacancyId, status } = req.body;
+    const { id, status } = req.body;
 
-    const solicitation = await Solicitation.findOne({
-      where: { user_id: userId, vacancy_id: vacancyId },
-    });
+    const solicitation = await Solicitation.findByPk(id);
 
     if (!solicitation)
       return res.status(400).json({ error: TRANSLATE_SOLICITATION.dontHave });
 
+    if (status === SOLICITATION_STATUS.reject)
+      await Notification.update(
+        { notify: false },
+        { where: { solicitation_id: id } }
+      );
+
     const response = await solicitation.update(
       { status },
       {
-        where: { user_id: userId, vacancy_id: vacancyId },
+        where: { id },
       }
     );
 
