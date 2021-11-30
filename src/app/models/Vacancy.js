@@ -9,6 +9,7 @@ class Vacancy extends Model {
         description: Sequelize.STRING,
         salary: Sequelize.DECIMAL,
         quantity: Sequelize.INTEGER,
+        level: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -19,7 +20,7 @@ class Vacancy extends Model {
     return this;
   }
   static associate(models) {
-    this.belongsTo(models.User, {
+    this.hasOne(models.User, {
       foreignKey: 'id',
       sourceKey: 'user_id',
       as: 'user',

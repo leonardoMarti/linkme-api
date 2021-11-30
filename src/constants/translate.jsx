@@ -8,7 +8,7 @@ export const TRANSLATE_SOLICITATION = {
   validateFail: 'Falha na validação',
   alreadyExists: 'Está solicitação já foi feita!',
   dontHave: 'Não há uma solicitação para fazer a atualização!',
-  candidateDontExists: 'O candidato não existe!',
+  userDontExists: 'O usuário não existe!',
   vacancyDontExists: 'A vaga não existe!',
 };
 

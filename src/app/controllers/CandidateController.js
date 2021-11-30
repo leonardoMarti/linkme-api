@@ -32,13 +32,13 @@ class CandidateController {
         {
           model: User,
           as: 'user',
-          attributes: ['name', 'email', 'type'],
+          attributes: ['id', 'name', 'email', 'type'],
           include: [
-            { model: File, as: 'avatar', attributes: ['name', 'path'] },
+            { model: File, as: 'avatar', attributes: ['id', 'name', 'path'] },
             {
               model: Address,
               as: 'address',
-              attributes: ['city', 'state', 'neighborhood'],
+              attributes: ['id', 'city', 'state', 'neighborhood'],
             },
           ],
         },

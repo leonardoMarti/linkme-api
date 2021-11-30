@@ -24,10 +24,15 @@ class Solicitation extends Model {
       foreignKey: 'solicitation_id',
       as: 'notification',
     });
-    this.belongsTo(models.User, {
+    this.hasOne(models.User, {
       sourceKey: 'user_id',
       foreignKey: 'id',
       as: 'user',
+    });
+    this.hasOne(models.Vacancy, {
+      sourceKey: 'vacancy_id',
+      foreignKey: 'id',
+      as: 'vacancy',
     });
   }
 }

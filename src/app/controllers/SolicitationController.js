@@ -1,19 +1,26 @@
 import * as Yup from 'yup';
 
 import { TRANSLATE_SOLICITATION } from '../../constants/translate';
-import { SOLICITATION_STATUS } from '../../constants/enumerate';
+import { SOLICITATION_STATUS, ENUM_USER_TYPE } from '../../constants/enumerate';
 
 import Solicitation from '../models/Solicitation';
 import Notification from '../models/Notification';
 import User from '../models/User';
 import Vacancy from '../models/Vacancy';
-import Candidate from '../models/Candidate';
-import Vacancy from '../models/Vacancy';
 
 class SolicitationController {
   async get(req, res) {
+    console.log('req.query', req.query);
+
+    const { type } = req.query;
+
+    const traineeQuery =
+      type === ENUM_USER_TYPE.trainee ? { user_id: req.userId } : null;
+    const companyQuery =
+      type === ENUM_USER_TYPE.company ? { id: req.userId } : null;
+
     const solicitation = await Solicitation.findAll({
-      where: { user_id: req.userId },
+      where: traineeQuery,
       include: [
         {
           model: Notification,
@@ -23,12 +30,18 @@ class SolicitationController {
         {
           model: User,
           as: 'user',
-          attributes: ['name', 'email'],
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Vacancy,
+          as: 'vacancy',
+          attributes: ['id', 'title', 'description', 'salary', 'quantity'],
           include: [
             {
-              model: Vacancy,
-              as: 'vacancy',
-              attributes: ['title', 'description', 'salary', 'quantity'],
+              model: User,
+              as: 'user',
+              where: companyQuery,
+              attributes: ['id', 'name', 'email'],
             },
           ],
         },
@@ -54,12 +67,12 @@ class SolicitationController {
 
     const { userId, vacancyId, sentBy, status } = req.body;
 
-    const hasCandidate = await Candidate.findByPk(userId);
+    const hasUser = await User.findByPk(userId);
 
-    if (!hasCandidate)
+    if (!hasUser)
       return res
         .status(404)
-        .json({ error: TRANSLATE_SOLICITATION.candidateDontExists });
+        .json({ error: TRANSLATE_SOLICITATION.userDontExists });
 
     const hasVacancy = await Vacancy.findByPk(vacancyId);
 
@@ -69,7 +82,10 @@ class SolicitationController {
         .json({ error: TRANSLATE_SOLICITATION.vacancyDontExists });
 
     const hasSolicitation = await Solicitation.findOne({
-      where: { user_id: userId, vacancy_id: vacancyId },
+      where: {
+        user_id: userId,
+        vacancy_id: vacancyId,
+      },
     });
 
     if (hasSolicitation)
@@ -83,6 +99,10 @@ class SolicitationController {
       sent_by: sentBy,
       status,
     });
+
+    const { id } = response;
+
+    await Notification.create({ solicitation_id: id, notify: true });
 
     return res.json(response);
   }

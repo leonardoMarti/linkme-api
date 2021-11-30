@@ -7,6 +7,7 @@ import authConfig from '../../config/auth';
 import User from '../models/User';
 import File from '../models/File';
 import Candidate from '../models/Candidate';
+import Vacancy from '../models/Vacancy';
 
 class SessionController {
   async get(req, res) {
@@ -43,6 +44,11 @@ class SessionController {
           as: 'candidate',
           attributes: ['id'],
         },
+        {
+          model: Vacancy,
+          as: 'vacancy',
+          attributes: ['id'],
+        },
       ],
     });
 
@@ -54,10 +60,10 @@ class SessionController {
       return res.status(401).json({ error: 'Senha incorreta!' });
     }
 
-    const { id, email, name, type, avatar, candidate } = user;
+    const { id, email, name, type, avatar, candidate, vacancy } = user;
 
     return res.json({
-      user: { id, email, name, type, avatar, candidate },
+      user: { id, email, name, type, avatar, candidate, vacancy },
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),

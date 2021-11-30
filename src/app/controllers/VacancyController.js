@@ -13,7 +13,7 @@ import Idiom from '../models/Idiom';
 class VacancyController {
   async get(req, res) {
     const vacancies = await Vacancy.findAll({
-      attributes: ['id', 'title', 'description', 'salary', 'quantity'],
+      attributes: ['id', 'title', 'description', 'salary', 'quantity', 'level'],
       include: [
         {
           model: User,
@@ -55,15 +55,23 @@ class VacancyController {
       description: Yup.string().required().max(300),
       salary: Yup.number().required(),
       quantity: Yup.number().required(),
+      level: Yup.number().required(),
     });
 
-    const { userId: user_id, title, description, salary, quantity } = req.body;
+    const {
+      userId: user_id,
+      title,
+      description,
+      salary,
+      quantity,
+      level,
+    } = req.body;
 
     const isValid = await schema.isValid(req.body);
     if (!isValid) return res.status(400).json({ error: 'Validation fails' });
 
     const hasVacancy = await Vacancy.findOne({
-      where: { user_id, title, description, salary, quantity },
+      where: { user_id, title, description, salary, quantity, level },
     });
 
     if (hasVacancy)
@@ -77,6 +85,7 @@ class VacancyController {
       description,
       salary,
       quantity,
+      level,
     });
 
     return res.json({ vacancy });
